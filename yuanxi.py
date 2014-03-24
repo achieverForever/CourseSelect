@@ -149,8 +149,6 @@ for i in course:
 	data[ctl_id] = 'on'
 	regex[i] = re.compile(course_id, flags=re.UNICODE)
 
-# s.headers['Referer'] = 'http://' + host + '/xf_xsyxxxk.aspx?xh=20111003828&xm=%B9%F9%CE%B0%EE%F1&gnmkdm=N121106'
-
 count = 0
 check_step = 0
 succeed = False
@@ -159,7 +157,6 @@ total_count = len(course)
 while True:
 
 	print('\n#{0} attempt to choose course         {1}/{2} Succeeded'.format(count, succeed_count, total_count))
-	# print('POST {0}    {1}'.format(yuanxi_url, r.status_code))
 
 	try:
 		r = s.post(yuanxi_url, data=data, params=params, timeout=5.)
@@ -185,12 +182,8 @@ while True:
 		if succeed_count == total_count:
 			succeed = True
 			break
-	if count == 5:
-		succeed = True
-		break
 
-
-	# print('Failed to choose course, try again in {0:.1f} seconds'.format(VAR_SELECT_WAIT))
+	print('Failed to choose course, try again in {0:.1f} seconds'.format(VAR_SELECT_WAIT))
 	time.sleep(VAR_SELECT_WAIT)
 	count += 1
 	check_step += 1
